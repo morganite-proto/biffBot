@@ -8,7 +8,7 @@ intents.members = True
 
 logging.basicConfig(level=logging.INFO)
 
-initial_extensions = ['profile']
+initial_extensions = ['profile', 'lfg']
 
 bot = commands.Bot(command_prefix=cfg.botPrefix,
                    description=cfg.botDescription, intents=intents)
