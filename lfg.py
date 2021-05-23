@@ -18,13 +18,13 @@ class LFGCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @ commands.command()
+    @ commands.group()
     async def lfg(self, ctx):
-        # check if the user has the LFG role. If they do, clear the role from
-        # the profile and the LFG DB. Else, add their role and an entry into
-        # the LFG DB
+        if ctx.invoked_subcommand is None:
+            await ctx.send(":information_source: _Missing parameter. TODO flesh this out._")
 
-        # MySQL datetime is YYYY-MM-DD hh:mm:ss
+    @ lfg.command()
+    async def toggle(self, ctx):
         if discord.utils.get(ctx.author.roles, id=cfg.lfgRole) is None:
             now = datetime.datetime.now()
             end = now + datetime.timedelta(hours=cfg.lfgTime)
@@ -41,6 +41,11 @@ class LFGCog(commands.Cog):
             db.commit()
             await ctx.author.remove_roles(discord.Object(cfg.lfgRole))
             await ctx.send(":information_source: Removed your LFG role!")
+
+    @lfg.command()
+    async def list(self, ctx):
+        # TODO use SQL to get a list of users with the LFG role.
+        await ctx.send("foo")
 
 
 def setup(bot):
