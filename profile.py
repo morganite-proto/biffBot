@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import NMBConfig as cfg
+import config as cfg
 import mysql.connector
 import re
 

@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 *.ipynb 
-NMBConfig.py
+config.py
 .vscode
 bot-env 
 images

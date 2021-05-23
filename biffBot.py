@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands, tasks
 import logging
-import NMBConfig as cfg
+import config as cfg
 
 intents = discord.Intents.default()
 intents.members = True
@@ -31,25 +31,25 @@ async def on_ready():
 @bot.command(aliases=['a'])
 async def about(ctx):
     """Give info about the bot"""
-    embed = discord.Embed(title=cfg.botName + " v" + cfg.botVersion, url="https://google.com",
+    embed = discord.Embed(title=cfg.botName + " v" + cfg.botVersion, url=cfg.botGithub,
                           description=cfg.botDescription, color=0xff0000)
     embed.add_field(name="For a list of commands,",
-                    value="use ?help or ?h", inline=True)
+                    value="use " + cfg.botPrefix + "help or " + cfg.botPrefix + "h.", inline=True)
     embed.add_field(name="To send feedback on the bot:",
-                    value="use ?feedback or ?f", inline=True)
+                    value="use " + cfg.botPrefix + "feedback or " + cfg.botPrefix + "f.", inline=True)
     embed.set_thumbnail(url=cfg.botIcon)
     embed.set_footer(text="Created by @Morganite#1999. discord.py version " +
-                     discord.__version__)
+                     discord.__version__ + ".")
     await ctx.send(embed=embed)
 
 
 @bot.command(aliases=['h'])
 async def help(ctx):
     """List commands that the bot supports"""
-    embed = discord.Embed(title=cfg.botName + " v" + cfg.botVersion, url="https://google.com",
+    embed = discord.Embed(title=cfg.botName + " v" + cfg.botVersion, url=cfg.botGithub,
                           description="A Python bot for Nintendo Online Multiplayer games.", color=0xff0000)
     embed.add_field(name="A list of commands can be found here:",
-                    value="https://google.com", inline=False)
+                    value=cfg.botHelp, inline=False)
     embed.set_thumbnail(url=cfg.botIcon)
     embed.set_footer(text="Created by @Morganite#1999. discord.py version " +
                      discord.__version__)
